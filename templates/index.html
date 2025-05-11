@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Scraper</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Video Scraper</h1>
+
+    <div class="input-group">
+        <label for="input_type">Input Type:</label>
+        <select id="input_type" onchange="togglePlaylistOptions()">
+            <option value="video">Single Video</option>
+            <option value="playlist">Playlist</option>
+        </select>
+
+        <label for="url">URL:</label>
+        <input type="text" id="url" placeholder="Enter video or playlist URL">
+    </div>
+
+    <div id="playlist_options" style="display: none;">
+        <div class="input-group">
+            <label for="playlist_name">Playlist Name (Optional):</label>
+            <input type="text" id="playlist_name" placeholder="Enter playlist name">
+
+            <label for="range_type">Range Type:</label>
+            <select id="range_type" onchange="toggleRangeOptions()">
+                <option value="entire">Entire Playlist</option>
+                <option value="specific">Specific Range</option>
+            </select>
+        </div>
+
+        <div id="range_options" style="display: none;">
+            <div class="input-group">
+                <label for="start_index">Start Index:</label>
+                <input type="number" id="start_index" min="1" placeholder="e.g., 1">
+
+                <label for="end_index">End Index:</label>
+                <input type="number" id="end_index" min="1" placeholder="e.g., 10">
+            </div>
+
+            <p id="total_videos"></p>
+            <table id="video_table">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="select_all" onclick="toggleSelectAll()"></th>
+                        <th onclick="sortTable()">Index</th>
+                        <th>Title</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <button id="start_extraction" onclick="startExtraction()">Start Extraction</button>
+    <div id="progress-bar-container">
+        <div id="progress-bar"></div>
+    </div>
+
+    <div id="progress"></div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
